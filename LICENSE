@@ -1,0 +1,25 @@
+Proxroute GUI source distribution
+Copyright (c) 2026 NT KERNEL.
+
+The Proxroute GUI in gui/ is licensed under the GNU General Public License,
+version 3 or (at your option) any later version (SPDX: GPL-3.0-or-later).
+See gui/LICENSE and the full licence text in COPYING and gui/COPYING.
+The root documentation and generated workspace support files supplied by
+NT KERNEL in this source package are also GPL-3.0-or-later.
+
+The following directories are separately licensed, at your choice, under
+the MIT License OR the Apache License, Version 2.0:
+
+  crates/proxroute-ipc/
+  crates/proxroute-config/
+
+Each shared crate contains LICENSE-MIT and LICENSE-APACHE. This root notice
+does not replace or narrow those alternative permissions.
+
+Third-party software and licence texts retain their respective licences.
+See gui/THIRD-PARTY-NOTICES.txt and the upstream sources pinned in
+gui/Cargo.lock. No private Proxroute engine, service, command-line program
+or driver source or binary is included in this package.
+
+The GUI is provided WITHOUT ANY WARRANTY, including the implied warranties
+of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See COPYING.

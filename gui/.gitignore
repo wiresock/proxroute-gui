@@ -1,0 +1,3 @@
+/target
+# Out-of-tree target dirs (e.g. cargo --target-dir target-*-review) used by reviewers/CI.
+/target-*

@@ -1,0 +1,12 @@
+[toolchain]
+# The floating stable channel, not a pinned release: rustup uses whatever stable is current on the
+# machine (CI installs the current stable on each run), so rustfmt/clippy findings and codegen can
+# change when stable advances. Builds are reproducible against Cargo.lock (--locked), not against a
+# compiler version; tools/release.ps1 records the rustc version in BUILDINFO.txt. To pin, replace
+# "stable" with an explicit release that the full test suite has passed on (e.g. "1.98.1"), and
+# update it deliberately.
+channel = "stable"
+# Proxroute targets Windows 10/11 x64 and ARM64 with the MSVC toolchain; aarch64-pc-windows-msvc is
+# needed only to cross-build the ARM64 live-test binaries (see docs/development.md).
+targets = ["x86_64-pc-windows-msvc"]
+components = ["clippy", "rustfmt"]

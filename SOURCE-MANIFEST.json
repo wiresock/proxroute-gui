@@ -1,0 +1,252 @@
+{
+  "format": 1,
+  "product": "proxroute-gui",
+  "version": "0.1.0",
+  "revision": "d2ae57a9a0b19383b9c0c15918ff8bfbda524949",
+  "dirty": false,
+  "export_variant": "public-source-with-documentation-and-dependency-notices",
+  "source_scope": "GUI and two shared crates only; original source files unchanged",
+  "lockfile_sha256": "b31afc3b6f59c6fdaf1cf320f7a6c8e9b6f9e16b343c942405454b0e1db5aacb",
+  "files": [
+    {
+      "path": ".gitignore",
+      "size": 98,
+      "sha256": "6b000350b2f108cad9757f326c55aea2a0c677c92e5acd130ef81b6f05f862b9",
+      "origin": "export-support"
+    },
+    {
+      "path": "COPYING",
+      "size": 35149,
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "origin": "export-support"
+    },
+    {
+      "path": "Cargo.toml",
+      "size": 752,
+      "sha256": "b52f24d77936c2f94eb709e076a91ed121ce50bc2b0fd1a8302c00411cf38b74",
+      "origin": "export-support"
+    },
+    {
+      "path": "LICENSE",
+      "size": 1148,
+      "sha256": "cb70c0e725c1262fe10c2bd72045cfac433406051bfa06f779a71cc5896049ba",
+      "origin": "export-support"
+    },
+    {
+      "path": "README-SOURCE.md",
+      "size": 595,
+      "sha256": "28ad812bc927a8a7b41a4909ccf0e6dd63ee6c3db98c447439ea77531d2ed3b2",
+      "origin": "export-support"
+    },
+    {
+      "path": "README.md",
+      "size": 3704,
+      "sha256": "9f5a38c0c9b55329d7453341a48ecfafd670db8027a1d95794d788a393de8349",
+      "origin": "export-support"
+    },
+    {
+      "path": "crates/proxroute-config/Cargo.toml",
+      "size": 501,
+      "sha256": "b9b9cd09fa16ac2d6309ca6cfcdc40a276c85d91455260754451eab07d8e0870",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "crates/proxroute-config/LICENSE-APACHE",
+      "size": 10847,
+      "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "crates/proxroute-config/LICENSE-MIT",
+      "size": 1066,
+      "sha256": "993df7ebd42c9dd402bdc4ddfa44594ed27888ae6717ff6b90787260e97d6d79",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "crates/proxroute-config/src/lib.rs",
+      "size": 30838,
+      "sha256": "40ab31c6a0ba1975b8e13130d0c35b9de2568d0262e0ce7c904383abf1cbc6f5",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "crates/proxroute-config/src/migrate.rs",
+      "size": 2363,
+      "sha256": "a82228da7f9af6462179873d23d228675f3deb8ec72877698506b096b23861bd",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "crates/proxroute-config/src/schema.rs",
+      "size": 24708,
+      "sha256": "43f1b1343bceebc629e064ee7f25a3bf26a18b992bad032543a584ca2352a85a",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "crates/proxroute-config/src/secret.rs",
+      "size": 4813,
+      "sha256": "370e8b5ca04fb5ee0b956d9a25d07573ec3886b7a0a01f6fecccf76f11ec87e8",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "crates/proxroute-config/src/timespec.rs",
+      "size": 9182,
+      "sha256": "cceade3dd0b3b0936f3d72e6cc612dc33b7177c9a32de55116b36d8ea13976fd",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "crates/proxroute-config/src/validate.rs",
+      "size": 120395,
+      "sha256": "eca11f49c14170d2768937c2541ffa5a95ba044146bd656a5aaf46bf3a6ce1f5",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "crates/proxroute-ipc/Cargo.toml",
+      "size": 706,
+      "sha256": "b0a1e986b261a218bae43d642b083baab420a529d91f04dc2779ea50b13104d8",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "crates/proxroute-ipc/LICENSE-APACHE",
+      "size": 10847,
+      "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "crates/proxroute-ipc/LICENSE-MIT",
+      "size": 1066,
+      "sha256": "993df7ebd42c9dd402bdc4ddfa44594ed27888ae6717ff6b90787260e97d6d79",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "crates/proxroute-ipc/src/lib.rs",
+      "size": 1324,
+      "sha256": "9c546b1fc6a84b4692f2d652c3758ff85fb8016695e612da0f0ae7cea1901c08",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "crates/proxroute-ipc/src/protocol.rs",
+      "size": 25592,
+      "sha256": "3758b2770aadf071adc7c18b772a1a2997bca3a7c86405ac524a05c96393c45a",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "crates/proxroute-ipc/src/secure_pipe.rs",
+      "size": 7127,
+      "sha256": "da56a5717711a3be33463ea26ebdefb18143db60339910542e7fc300ed82d1f2",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "crates/proxroute-ipc/src/transport.rs",
+      "size": 37945,
+      "sha256": "1787e4384c90e42be93f17f882e01cb880dac6b993051c9eb38150fe1291eaf6",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "gui/.cargo/config.toml",
+      "size": 575,
+      "sha256": "57095b0ab088233b981b4bc207f1c0029a2f0534a3dbe4733c238398a1cccb0a",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "gui/.gitignore",
+      "size": 108,
+      "sha256": "ad813ec6338a8bb24e483a3b05ffd9bf72304589eefaab5be79d96e86e0e4c36",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "gui/COPYING",
+      "size": 35149,
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "gui/Cargo.lock",
+      "size": 206397,
+      "sha256": "b31afc3b6f59c6fdaf1cf320f7a6c8e9b6f9e16b343c942405454b0e1db5aacb",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "gui/Cargo.toml",
+      "size": 2492,
+      "sha256": "4eaafcd9cf294d43114f9f7f088073ab6119df7dbfb496d2b01e4d43fc078bc7",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "gui/LICENSE",
+      "size": 1417,
+      "sha256": "d995c0f483af92e592a61afdb75dd2912885c670167b539e26a1788123ef448d",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "gui/README.md",
+      "size": 2752,
+      "sha256": "fe65a4992c90e91111369dca88f208835f5ff795600158c6e896e9d47ba1a429",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "gui/THIRD-PARTY-NOTICES.txt",
+      "size": 907628,
+      "sha256": "481f30f064f2a90d02ac03c0cab7b879b7a493e2c2a782fcf333b8da36d9030e",
+      "origin": "export-support"
+    },
+    {
+      "path": "gui/locales/en.yml",
+      "size": 12413,
+      "sha256": "30fa1f3b2368716ded6303b2abca7666b33008c3dcf2e293bb74b8ef7680f6f8",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "gui/locales/es.yml",
+      "size": 13588,
+      "sha256": "38642600bb5c09150c27b1c8fb48dd40eedd4b5edd92750bbdde502d9e3d9884",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "gui/locales/ru.yml",
+      "size": 18871,
+      "sha256": "a7ae486ab26d7a772e632dbdd4c9def95c85ac761ac620c5f1d1bda5fb687a8d",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "gui/src/config_load.rs",
+      "size": 2400,
+      "sha256": "e9f067b1476c1e47fdafd61049c8fed17d91eb2085bcae1baf067dc0b56d2b2d",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "gui/src/main.rs",
+      "size": 296963,
+      "sha256": "ad8f8960cfa351077a5b18b3d48d98f6e181c88c4bb648db76ca1e23687716d3",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "gui/src/profile_select.rs",
+      "size": 7157,
+      "sha256": "19f8a015af53e4e05632ce1284c4a8609d487111e55581f0de97a7a56dae2493",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "gui/src/restart.rs",
+      "size": 14869,
+      "sha256": "d3f3b563e78ba1435c603bd07ba4eb4a7ea7dbbca8f23ba2399c7c8f20dd3e8b",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "gui/src/rules.rs",
+      "size": 27624,
+      "sha256": "30341a4f132740397aac231c74fcff762ec8932bb55369e0bf13a3f01655c9bb",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    },
+    {
+      "path": "licenses/policy.json",
+      "size": 1495,
+      "sha256": "a7d6d14023e44b35a1e51cdecf0c18ec7ee67c59e9ae19daadfda0cb8810681d",
+      "origin": "export-support"
+    },
+    {
+      "path": "rust-toolchain.toml",
+      "size": 806,
+      "sha256": "92a8d0e6074bd8dfc81e3961a80e36b149451166977cc81237564f622faf85c0",
+      "origin": "git:d2ae57a9a0b19383b9c0c15918ff8bfbda524949"
+    }
+  ]
+}

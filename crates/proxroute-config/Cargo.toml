@@ -1,0 +1,17 @@
+[package]
+name = "proxroute-config"
+description = "Proxroute — versioned JSON configuration: schema, validation, migration, profiles"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license = "MIT OR Apache-2.0"  # see LICENSE-MIT / LICENSE-APACHE in this crate
+publish = false
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+serde_ignored = "0.1"
+thiserror.workspace = true
+ipnet.workspace = true
+zeroize.workspace = true

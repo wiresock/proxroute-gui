@@ -1,0 +1,27 @@
+[package]
+name = "proxroute-ipc"
+description = "Proxroute — local management API protocol (service <-> CLI/UI)"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license = "MIT OR Apache-2.0"  # see LICENSE-MIT / LICENSE-APACHE in this crate
+publish = false
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+tokio.workspace = true
+tokio-util.workspace = true
+tracing.workspace = true
+
+[target.'cfg(windows)'.dependencies.windows]
+version = "0.58"
+features = [
+    "Win32_Foundation",
+    "Win32_Security",
+    "Win32_Security_Authorization",
+    "Win32_System_Pipes",
+    "Win32_System_Threading",
+    "Win32_Storage_FileSystem",
+]

@@ -1,0 +1,9 @@
+# Link the MSVC C runtime statically. See ../.cargo/config.toml for the full rationale:
+# the dynamic CRT makes the binary import VCRUNTIME140.dll, which is absent on a clean
+# Windows install, and proxroute-gui.exe then dies with 0xC0000135 before main() runs.
+#
+# This file is duplicated rather than shared because gui/ is a SEPARATE cargo workspace:
+# cargo reads .cargo/config.toml relative to the invocation directory, so the root
+# workspace's copy does not apply here.
+[target.'cfg(all(windows, target_env = "msvc"))']
+rustflags = ["-C", "target-feature=+crt-static"]

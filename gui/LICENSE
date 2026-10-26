@@ -1,0 +1,30 @@
+Proxroute GUI
+
+Copyright (c) 2026 NT KERNEL.
+
+The Proxroute GUI program (proxroute-gui.exe), whose source is this gui/
+directory, is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+The full text of the GNU General Public License, version 3, is in the file
+COPYING next to this one, and at <https://www.gnu.org/licenses/>.
+
+Components the GUI is built from keep their own licences:
+
+  * proxroute-ipc and proxroute-config (NT KERNEL): MIT OR Apache-2.0, see the
+    LICENSE-MIT and LICENSE-APACHE files in each crate;
+  * third-party crates, among them crates of the Zed editor licensed under
+    GPL-3.0-or-later: see the third-party notices distributed with the GUI.
+
+The complete corresponding source of each released GUI build is published as a
+separate source package; the GUI release records which one (GUI-SOURCE.json).
+
+The rest of Proxroute (the service, command-line tool, engine and kernel
+driver) is not covered by this licence. It communicates with the GUI only over
+the local management pipe.

@@ -1,0 +1,311 @@
+# Spanish (Español). Mirrors en.yml; any key not present here falls back to English at runtime, so
+# it is safe for this file to trail the source-of-truth catalog as more strings are migrated.
+
+tab:
+  connections: "Conexiones"
+  config: "Configuración"
+
+config:
+  switch_confirm: "¿Descartar los cambios sin guardar y cambiar a %{section}?"
+  create_rule_confirm: "Crear una regla descartará las ediciones JSON sin guardar. ¿Continuar?"
+  title: "Configuración"
+  structural_note: "DNS, modo de redirección, IPv6 y bypass son estructurales — edítalos en «Editar JSON»."
+  editing: "Editando"
+  readonly: "Solo lectura"
+  unsaved: "sin guardar"
+  add_rule: "+ Añadir regla"
+  add_proxy: "+ Añadir proxy"
+  add_chain: "+ Añadir cadena"
+
+lang:
+  switch_tip: "Cambiar el idioma de la interfaz a %{lang}."
+
+button:
+  close: "Cerrar"
+  explain: "Explicar"
+  reset_filters: "Restablecer filtros"
+  resume: "▶ Reanudar"
+  copy: "Copiar"
+  export: "Exportar"
+  clear: "Limpiar"
+  clear_closed: "Limpiar cerradas"
+  discard_reload: "¿Descartar y recargar?"
+  discard_changes: "¿Descartar cambios?"
+  revert: "Revertir"
+  edit_json: "Editar JSON"
+  discard_switch: "Descartar y cambiar"
+  discard_create: "Descartar y crear"
+  keep_editing: "Seguir editando"
+  restart_engine: "Reiniciar motor"
+  change: "Cambiar"
+  cancel: "Cancelar"
+  check: "Comprobar"
+  edit_section: "Editar %{section}"
+  create_rule: "Crear regla"
+  create_rule_for: "Crear regla para %{app}"
+  explain_routing: "Explicar enrutamiento"
+  show_details: "Mostrar detalles"
+  pause: "⏸ Pausar"
+  reload: "Recargar"
+  reloading: "Recargando…"
+  reload_tip: "Recarga la configuración guardada desde el motor en ejecución — descarta las ediciones sin guardar."
+  revert_tip: "Descarta todos los cambios sin guardar y sale del modo de edición."
+  saving: "Guardando…"
+  save_apply: "Guardar y aplicar"
+  save_apply_tip: "Guarda la configuración y la aplica en caliente al motor en ejecución — la mayoría de los cambios no requieren reinicio."
+
+chip:
+  log_filter:
+    tip: "Filtra el registro de eventos a esta severidad."
+  conn_filter:
+    tip: "Muestra solo las conexiones que coinciden con esta decisión o estado."
+  config_section:
+    tip: "Cambia a esta parte de la configuración."
+  rule_target:
+    tip: "Enruta el tráfico que coincide con esta regla a través de este proxy o cadena."
+  rule_enabled:
+    tip: "Activa o desactiva esta regla. Una regla desactivada se omite durante la coincidencia."
+  chain_add_hop:
+    tip: "Añade este proxy como salto de la cadena."
+
+# Proxy-kind chip tooltips.
+proxy:
+  kind:
+    socks5: "SOCKS5 — transporta TCP y UDP. SOCKS5 / SOCKS5 TLS son los únicos tipos que proxifican UDP (QUIC)."
+    socks5_tls: "SOCKS5 con su canal de control dentro de un túnel TLS hacia el proxy (confía en el certificado o activa omitir la verificación). Transporta TCP + UDP — pero los datagramas UDP retransmitidos van sin cifrar; TLS cubre el canal de control, no la retransmisión UDP."
+    socks4: "SOCKS4 — solo TCP. Envía un nombre de usuario (USERID); la contraseña se ignora."
+    socks4a: "SOCKS4a — como SOCKS4, pero el proxy resuelve el nombre de host del destino. Solo TCP."
+    http: "Proxy HTTP CONNECT — solo TCP. Admite autenticación basic / digest / negotiate."
+    https: "HTTP CONNECT sobre una conexión TLS hacia el proxy — solo TCP. El certificado TLS del proxy debe ser de confianza (o activa omitir la verificación del certificado)."
+  checking: "comprobando…"
+  dns:
+    remote: "El proxy resuelve el nombre de host del destino (DNS en la salida) — evita filtrar consultas localmente."
+    local: "Resuelve el nombre de host localmente y entrega al proxy una IP. Modelado pero aún no aplicado — el modo DNS del perfil gobierna la resolución."
+
+# Chain chip tooltips.
+chain:
+  dns:
+    first_hop: "Resuelve el nombre de destino en la ENTRADA de la cadena (localmente, mediante el resolutor directo) y envía una IP a través de la cadena — para DNS corporativo / split-horizon que solo resuelve en el lado del cliente. La IP resuelta debe ser alcanzable desde la red del salto de salida."
+    last_hop: "Entrega el nombre de destino al salto de SALIDA, que lo resuelve remotamente (sin fugas; resuelve en la red de la salida). El valor por defecto."
+    per_rule: "Delega en el DNS por regla / del perfil. Aún no se aplica de forma diferenciada — actualmente se comporta como lastHop (resuelve en la salida)."
+  mode:
+    static: "Encadena a través de todos los saltos en orden (proxy → proxy → destino)."
+    failover: "Trata los saltos como alternativas (no una cadena): cada flujo usa UN salto, probándolos en orden hasta que uno conecte. Los saltos que una comprobación de estado reporta caídos se prueban al final, no se omiten."
+    round_robin: "Trata los saltos como alternativas (no una cadena): reparte los flujos entre ellos en rotación. Los saltos que una comprobación de estado reporta caídos se prueban al final, no se omiten."
+    latency: "Trata los saltos como alternativas (no una cadena): cada flujo prefiere el salto con menor RTT. Los saltos que una comprobación de estado reporta caídos se prueban al final; configura un healthCheck en cada salto para poder clasificarlos (los saltos sin clasificar usan el orden de la configuración)."
+
+# Rule action chip tooltips.
+action:
+  proxy: "Enruta los flujos coincidentes a través de un único proxy."
+  chain: "Enruta los flujos coincidentes a través de una cadena de proxies (varios saltos en orden)."
+  direct: "Conecta directamente, sin pasar por ningún proxy."
+  block: "Descarta los flujos coincidentes (bloqueo seguro)."
+
+# On-failure chip tooltips.
+on_failure:
+  block: "Si el proxy/cadena no está disponible, bloquea el flujo (bloqueo seguro)."
+  direct: "Si el proxy/cadena no está disponible, recurre a una conexión directa."
+  next: "Si el proxy/cadena no está disponible, pasa a la siguiente regla coincidente."
+
+# Localized display labels for enums whose `label()` stays English (persisted to ui.json).
+conn_filter:
+  all: "Todas"
+  proxied: "Con proxy"
+  direct: "Directas"
+  blocked: "Bloqueadas"
+  failed: "Fallidas"
+config_section:
+  rules: "Reglas"
+  proxies: "Proxies"
+  chains: "Cadenas"
+  profile: "Perfil"
+log_filter:
+  all: "Todo"
+  info: "Info"
+  warn: "Aviso"
+  error: "Error"
+
+# Connections table column headers.
+table:
+  conn:
+    pid: "PID"
+    process: "Proceso"
+    protocol: "Proto"
+    destination: "Destino"
+    decision: "Decisión"
+    state: "Estado"
+    sent: "Enviado"
+    received: "Recibido"
+
+# Connection detail panel.
+detail:
+  title: "Detalles de la conexión"
+  process: "Proceso"
+  path: "Ruta"
+  pid: "PID"
+  protocol: "Protocolo"
+  destination: "Destino"
+  host: "Host"
+  decision: "Decisión"
+  matched_rule: "Regla coincidente"
+  state: "Estado"
+  error: "Error"
+  sent: "Enviado"
+  received: "Recibido"
+  explanation_title: "Explicación del enrutamiento"
+  explaining: "explicando…"
+  explain_failed: "la explicación falló: %{error}"
+  copy_process: "Copiar proceso"
+  copy_path: "Copiar ruta"
+  copy_destination: "Copiar destino"
+  copy_host: "Copiar host"
+
+# Config editor form field labels.
+form:
+  name: "nombre"
+  apps: "aplicaciones"
+  hosts: "hosts"
+  ips: "IPs/CIDRs"
+  ports: "puertos"
+  protocol: "protocolo"
+  action: "acción"
+  target: "objetivo"
+  auth: "autenticación"
+  new_password: "nueva contraseña"
+  password: "contraseña"
+  username: "usuario"
+  hc_target: "objetivo hc"
+  hc_interval: "intervalo hc (s)"
+  hops: "saltos"
+  add_hop: "añadir salto"
+  mode: "modo"
+  dns: "dns"
+  tls_cert: "cert tls"
+  carries: "transporta"
+  on_failure: "al fallar"
+  advanced_match: "Coincidencia avanzada"
+  ip_family: "familia IP"
+  match: "coincidencia"
+  skip_cert: "omitir verificación del certificado (inseguro)"
+  verify_cert: "verificar certificado"
+  skip_cert_tip: "Acepta CUALQUIER certificado TLS del proxy. Inseguro — solo para un certificado autofirmado del proxy en pruebas; en otro caso, confía en la CA del proxy."
+  redirect_auth: "autorizar flujos redirigidos"
+  redirect_auth_tip: "Permite que el controlador autorice nuestros propios flujos redirigidos en la capa de recepción ALE. El tráfico redirigido se reinyecta como una conexión entrante, que una política de firewall entrante restrictiva bloquea; esto permite exactamente esos flujos y nada más, y nunca modifica el Firewall de Windows. Se aplica en ambos modos de redirección (UDP se redirige en la capa IP incluso en modo ALE). Desactívalo solo para descartar esta causa de un problema; requiere el controlador v1.2+."
+  carries_tcp_udp: "TCP + UDP (QUIC)"
+  carries_tcp_only: "solo TCP — UDP/QUIC requiere SOCKS5 / SOCKS5 TLS"
+
+msg:
+  active_filter: "filtro '%{name}'"
+  no_connections: "No hay conexiones que mostrar."
+  nothing_matches: "Nada coincide — %{filters}"
+  cleared_note: "se limpiaron las conexiones cerradas"
+  paused_banner: "⏸ En pausa — tabla congelada (el registro y las velocidades siguen actualizándose)"
+  log_empty: "Registro de eventos — aquí aparecen aperturas, cierres, bloqueos y fallos."
+  log_filter_empty: "Ninguna línea del registro coincide con el filtro."
+  loading_config: "Cargando configuración…"
+  no_config: "No hay configuración cargada."
+  engine_unreachable: "Motor no accesible — inícialo (con privilegios elevados) y se conectará."
+  waiting_connections: "Esperando conexiones…"
+  no_filter_match: "Ninguna conexión coincide con el filtro."
+  search_filter: "búsqueda \"%{term}\""
+  config_load_failed: "No se pudo cargar la configuración: %{error}"
+  profile_not_found: "Perfil '%{name}' no encontrado."
+
+# Config-tab editor status + save feedback.
+save:
+  reloading: "recargando configuración…"
+  reloaded: "✓ configuración recargada"
+  saving: "guardando…"
+  restarting: "reiniciando…"
+  applied: "✓ configuración aplicada"
+  saved_service_restart: "✓ guardado — %{reason} (se requiere un reinicio completo del servicio)"
+  saved_engine_restart: "✓ guardado — reinicia el motor para aplicar: %{reason}"
+  restart_complete: "✓ el motor ya ejecuta la configuración guardada"
+  restart_unconfirmed: "✓ motor accesible (reinicio no confirmado por digest)"
+  restart_incomplete: "✗ el reinicio no se completó — revisa el motor"
+  adopted_pending_restart: "la configuración guardada aún no está activa — reinicia para aplicar"
+  waiting_engine_status: "esperando el estado del motor antes de crear una regla — inténtalo de nuevo en un momento"
+  service_restart_hint: "⚠ reinicia el servicio Proxroute para aplicar"
+  problems: "✗ %{count} problema(s) — ver abajo"
+  serialize_error: "✗ serialización: %{error}"
+  compact_error: "Error"
+  compact_applied: "Aplicado"
+  compact_saving: "Guardando…"
+  compact_restarting: "Reiniciando…"
+  badge_service_restart: "requiere reinicio del servicio"
+  badge_restart: "requiere reinicio"
+
+# Bottom status bar.
+status:
+  connecting: "conectando…"
+  running: "en ejecución"
+  reconnecting: "reconectando…"
+  pending_restart: "configuración guardada aún no activa — reinicia para aplicar"
+  shown: "%{count} mostradas"
+  shown_of: "%{shown} de %{total} mostradas"
+  active_line: "%{active} activas · %{shown}%{paused}"
+  paused_suffix: " · en pausa"
+  killswitch_degraded: "⚠ kill-switch degradado — tráfico directo bloqueado"
+  restart_needed: "⚠ requiere reinicio"
+  driver_version: "driver v%{major}.%{minor}"
+  engine: "motor: %{state}"
+  live: "en vivo · %{count} conexión(es)"
+
+# Event-log line fragments.
+log:
+  opened_via: "abierta vía %{target}"
+  opened_direct: "abierta (directa)"
+  failed: "FALLÓ%{detail}"
+  closed: "cerrada  %{sent} enviados / %{recv} recibidos"
+  blocked: "BLOQUEADA"
+  cancelled: "cancelada"
+  exported: "registro exportado a %{path}"
+  export_failed: "falló la exportación del registro: %{error}"
+
+# Save error/warning panel headings.
+panel:
+  problems_heading: "problema(s) que corregir antes de guardar:"
+  warnings_heading: "advertencia(s) no bloqueante(s):"
+
+# Inline state badges.
+badge:
+  on: "activo"
+  off: "inactivo"
+  enabled: "habilitado"
+  disabled: "deshabilitado"
+  json_only: "solo JSON"
+
+# Rule card + form (dynamic bits).
+rule:
+  group: "grupo %{n}"
+  count: "%{count} regla(s)"
+  match_summary: "coincidencia: %{summary}"
+  add_target: "+ Añadir %{what}"
+  no_target: "aún no hay %{what} definidos"
+
+# Profile summary field labels.
+profile:
+  title: "Perfil: %{name}"
+  redirect_mode: "Modo de redirección"
+  dns: "DNS"
+  ipv6: "IPv6"
+  bypass: "Bypass"
+  # Config-header running/editing/saved profile line.
+  running: "Perfil en ejecución"
+  editing: "Perfil en edición"
+  saved: "Perfil guardado"
+  note_pending: " — aún no activo (reinicia para aplicar)"
+  note_config_default: " (predeterminado de la configuración: %{name})"
+  drift_warning: "⚠ El perfil en ejecución del motor cambió a '%{running}' con este editor abierto — tus ediciones apuntan a '%{frozen}' y se le aplicarán al guardar."
+
+# Input placeholders.
+input:
+  filter: "Filtrar por proceso o destino…"
+  log_search: "Buscar en el registro…"
+
+# Background-worker status lines (shown in the status bar when the engine is unreachable).
+worker:
+  runtime_error: "error del runtime de tokio: %{error}"
+  unexpected_reply: "respuesta inesperada: %{reply}"
+  engine_up_no_list: "motor activo; lista de conexiones no disponible (%{error})"
+  engine_unreachable: "motor no accesible (%{error}) — ¿está en ejecución y tienes privilegios elevados?"

@@ -1,0 +1,32 @@
+{
+  "clarifications": [
+    {
+      "evidence": "Cargo.toml has no license field; the crate's only licence file is the git symlink LICENSE-APACHE -> ../../LICENSE-APACHE (Apache License 2.0, Zed Industries). Upstream later added license = \"Apache-2.0\" to this crate (zed commit ac5af8b9e1ea, 2026-09-01).",
+      "license": "Apache-2.0",
+      "license_files": [
+        {
+          "path": "LICENSE-APACHE",
+          "sha256": "752daf2fb234ca4a1fa372c073fe127f44b7b90fd2529ae44273a64f9d53da7a"
+        }
+      ],
+      "name": "gpui_shared_string",
+      "source": "git+https://github.com/zed-industries/zed?rev=1d217ee39d381ac101b7cf49d3d22451ac1093fe#1d217ee39d381ac101b7cf49d3d22451ac1093fe",
+      "version": "0.1.0"
+    },
+    {
+      "evidence": "As gpui_shared_string: no license field, only LICENSE-APACHE -> ../../LICENSE-APACHE; upstream added license = \"Apache-2.0\" in ac5af8b9e1ea.",
+      "license": "Apache-2.0",
+      "license_files": [
+        {
+          "path": "LICENSE-APACHE",
+          "sha256": "752daf2fb234ca4a1fa372c073fe127f44b7b90fd2529ae44273a64f9d53da7a"
+        }
+      ],
+      "name": "gpui_util",
+      "source": "git+https://github.com/zed-industries/zed?rev=1d217ee39d381ac101b7cf49d3d22451ac1093fe#1d217ee39d381ac101b7cf49d3d22451ac1093fe",
+      "version": "0.1.0"
+    }
+  ],
+  "purpose": "Pinned licence metadata clarifications used by THIRD-PARTY-NOTICES.txt; not a general licence approval policy.",
+  "schema": 1
+}

@@ -1,0 +1,314 @@
+# English — the source of truth and fallback locale. User-facing strings are being migrated to
+# `t!("<key>")` in staged slices (not all are here yet). Add a language by dropping a sibling file
+# (e.g. `ru.yml`) with the same keys; any key missing from another locale degrades to English. Keys
+# are grouped by UI area. Interpolate with `%{name}` and pass `t!("key", name = value)` rather than
+# concatenating fragments (fragment order is not stable across languages).
+
+tab:
+  connections: "Connections"
+  config: "Config"
+
+config:
+  switch_confirm: "Discard unsaved changes and switch to %{section}?"
+  create_rule_confirm: "Creating a rule will discard your unsaved JSON edits. Continue?"
+  title: "Config"
+  structural_note: "DNS, redirect mode, IPv6 and bypass are structural — edit them in “Edit JSON”."
+  editing: "Editing"
+  readonly: "Read-only"
+  unsaved: "unsaved"
+  add_rule: "+ Add rule"
+  add_proxy: "+ Add proxy"
+  add_chain: "+ Add chain"
+
+lang:
+  switch_tip: "Switch the interface language to %{lang}."
+
+button:
+  close: "Close"
+  explain: "Explain"
+  reset_filters: "Reset filters"
+  resume: "▶ Resume"
+  copy: "Copy"
+  export: "Export"
+  clear: "Clear"
+  clear_closed: "Clear closed"
+  discard_reload: "Discard & reload?"
+  discard_changes: "Discard changes?"
+  revert: "Revert"
+  edit_json: "Edit JSON"
+  discard_switch: "Discard & switch"
+  discard_create: "Discard & create"
+  keep_editing: "Keep editing"
+  restart_engine: "Restart engine"
+  change: "Change"
+  cancel: "Cancel"
+  check: "Check"
+  edit_section: "Edit %{section}"
+  create_rule: "Create rule"
+  create_rule_for: "Create rule for %{app}"
+  explain_routing: "Explain routing"
+  show_details: "Show details"
+  pause: "⏸ Pause"
+  reload: "Reload"
+  reloading: "Reloading…"
+  reload_tip: "Reload the saved config from the running engine — discards unsaved edits."
+  revert_tip: "Discard all unsaved changes and leave edit mode."
+  saving: "Saving…"
+  save_apply: "Save & apply"
+  save_apply_tip: "Save the config and hot-apply it to the running engine — most changes need no restart."
+
+chip:
+  log_filter:
+    tip: "Filter the event log to this severity."
+  conn_filter:
+    tip: "Show only connections matching this decision or state."
+  config_section:
+    tip: "Switch to this part of the configuration."
+  rule_target:
+    tip: "Route traffic matched by this rule through this proxy or chain."
+  rule_enabled:
+    tip: "Enable or disable this rule. A disabled rule is skipped during matching."
+  chain_add_hop:
+    tip: "Add this proxy as a hop in the chain."
+
+# Proxy-kind chip tooltips.
+proxy:
+  kind:
+    socks5: "SOCKS5 — carries TCP and UDP. SOCKS5 / SOCKS5 TLS are the only kinds that proxy UDP (QUIC)."
+    socks5_tls: "SOCKS5 with its control channel in a TLS tunnel to the proxy (trust the cert, or enable skip-verify). Carries TCP + UDP — but relayed UDP datagrams stay plain; TLS covers the control channel, not the UDP relay."
+    socks4: "SOCKS4 — TCP only. Sends a username (USERID); the password is ignored."
+    socks4a: "SOCKS4a — like SOCKS4, but the proxy resolves the destination hostname. TCP only."
+    http: "HTTP CONNECT proxy — TCP only. Supports basic / digest / negotiate auth."
+    https: "HTTP CONNECT over a TLS connection to the proxy — TCP only. The proxy's TLS cert must be trusted (or enable skip cert verification)."
+  checking: "checking…"
+  dns:
+    remote: "The proxy resolves the destination hostname (DNS at the exit) — avoids leaking lookups locally."
+    local: "Resolve the hostname locally, then hand the proxy an IP. Modeled but not enforced yet — the profile's DNS mode governs resolution."
+
+# Chain chip tooltips.
+chain:
+  dns:
+    first_hop: "Resolve the destination name at the chain ENTRY (locally, via the direct resolver) and send an IP through the chain — for split-horizon / corp DNS that only resolves on the client side. The resolved IP must be reachable from the exit hop's network."
+    last_hop: "Hand the destination name to the EXIT hop, which resolves it remotely (leak-safe; resolves in the exit's network). The default."
+    per_rule: "Defer to the per-rule / profile DNS. Not yet distinctly enforced — currently behaves like lastHop (resolves at the exit)."
+  mode:
+    static: "Chain through every hop in order (proxy → proxy → destination)."
+    failover: "Treat the hops as alternatives (not a chain): each flow uses ONE hop, trying them in order until one connects. Hops that a health check reports as down are tried last, not skipped."
+    round_robin: "Treat the hops as alternatives (not a chain): spread flows across them in rotation. Hops that a health check reports as down are tried last, not skipped."
+    latency: "Treat the hops as alternatives (not a chain): each flow prefers the lowest-RTT hop. Hops that a health check reports as down are tried last; set a healthCheck on each hop so they can be ranked (unranked hops fall back to config order)."
+
+# Rule action chip tooltips.
+action:
+  proxy: "Route matching flows through a single proxy."
+  chain: "Route matching flows through a proxy chain (multiple hops in order)."
+  direct: "Connect directly, bypassing all proxies."
+  block: "Drop matching flows (fail closed)."
+
+# On-failure chip tooltips.
+on_failure:
+  block: "If the proxy/chain is unreachable, block the flow (fail closed)."
+  direct: "If the proxy/chain is unreachable, fall back to a direct connection."
+  next: "If the proxy/chain is unreachable, fall through to the next matching rule."
+
+# Localized display labels for enums whose `label()` stays English (persisted to ui.json).
+conn_filter:
+  all: "All"
+  proxied: "Proxied"
+  direct: "Direct"
+  blocked: "Blocked"
+  failed: "Failed"
+config_section:
+  rules: "Rules"
+  proxies: "Proxies"
+  chains: "Chains"
+  profile: "Profile"
+log_filter:
+  all: "All"
+  info: "Info"
+  warn: "Warn"
+  error: "Error"
+
+# Connections table column headers.
+table:
+  conn:
+    pid: "PID"
+    process: "Process"
+    protocol: "Proto"
+    destination: "Destination"
+    decision: "Decision"
+    state: "State"
+    sent: "Sent"
+    received: "Received"
+
+# Connection detail panel.
+detail:
+  title: "Connection details"
+  process: "Process"
+  path: "Path"
+  pid: "PID"
+  protocol: "Protocol"
+  destination: "Destination"
+  host: "Host"
+  decision: "Decision"
+  matched_rule: "Matched rule"
+  state: "State"
+  error: "Error"
+  sent: "Sent"
+  received: "Received"
+  explanation_title: "Routing explanation"
+  explaining: "explaining…"
+  explain_failed: "explain failed: %{error}"
+  copy_process: "Copy process"
+  copy_path: "Copy path"
+  copy_destination: "Copy destination"
+  copy_host: "Copy host"
+
+# Config editor form field labels.
+form:
+  name: "name"
+  apps: "apps"
+  hosts: "hosts"
+  ips: "IPs/CIDRs"
+  ports: "ports"
+  protocol: "protocol"
+  action: "action"
+  target: "target"
+  auth: "auth"
+  new_password: "new password"
+  password: "password"
+  username: "username"
+  hc_target: "hc target"
+  hc_interval: "hc interval (s)"
+  hops: "hops"
+  add_hop: "add hop"
+  mode: "mode"
+  dns: "dns"
+  tls_cert: "tls cert"
+  carries: "carries"
+  on_failure: "on failure"
+  advanced_match: "Advanced match"
+  ip_family: "IP family"
+  match: "match"
+  skip_cert: "skip cert verification (insecure)"
+  verify_cert: "verify cert"
+  skip_cert_tip: "Accept ANY TLS certificate from the proxy. Insecure — only for a self-signed proxy cert in testing; otherwise trust the proxy's CA."
+  redirect_auth: "authorize redirected flows"
+  redirect_auth_tip: "Let the driver authorize our own redirected flows at the ALE receive layer. Redirected traffic is reinjected as an inbound connection, which a restrictive inbound firewall policy blocks — this permits exactly those flows and nothing else, and never changes Windows Firewall. Applies in both redirect modes (UDP is redirected at the IP layer even in ALE). Turn off only to rule this out as the cause of a problem; needs driver v1.2+."
+  carries_tcp_udp: "TCP + UDP (QUIC)"
+  carries_tcp_only: "TCP only — UDP/QUIC needs SOCKS5 / SOCKS5 TLS"
+
+msg:
+  active_filter: "filter '%{name}'"
+  no_connections: "No connections to show."
+  nothing_matches: "Nothing matches — %{filters}"
+  cleared_note: "closed connections cleared"
+  paused_banner: "⏸ Paused — table frozen (log and rates still live)"
+  log_empty: "Event log — opens, closes, blocks and failures appear here."
+  log_filter_empty: "No log lines match the filter."
+  loading_config: "Loading configuration…"
+  no_config: "No configuration loaded."
+  engine_unreachable: "Engine not reachable — start it (elevated) and this will connect."
+  waiting_connections: "Waiting for connections…"
+  no_filter_match: "No connections match the filter."
+  search_filter: "search \"%{term}\""
+  config_load_failed: "Couldn't load configuration: %{error}"
+  profile_not_found: "Profile '%{name}' not found."
+
+# Config-tab editor status + save feedback.
+save:
+  reloading: "reloading configuration…"
+  reloaded: "✓ configuration reloaded"
+  saving: "saving…"
+  restarting: "restarting…"
+  applied: "✓ configuration applied"
+  saved_service_restart: "✓ saved — %{reason} (a full service restart is required)"
+  saved_engine_restart: "✓ saved — restart engine to apply: %{reason}"
+  restart_complete: "✓ engine now running the saved configuration"
+  restart_unconfirmed: "✓ engine reachable (restart not digest-confirmed)"
+  restart_incomplete: "✗ restart did not complete — check the engine"
+  adopted_pending_restart: "saved configuration is not yet live — restart to apply"
+  waiting_engine_status: "waiting for engine status before creating a rule — try again in a moment"
+  service_restart_hint: "⚠ restart the Proxroute service to apply"
+  problems: "✗ %{count} problem(s) — see below"
+  serialize_error: "✗ serialize: %{error}"
+  compact_error: "Error"
+  compact_applied: "Applied"
+  compact_saving: "Saving…"
+  compact_restarting: "Restarting…"
+  badge_service_restart: "service restart needed"
+  badge_restart: "restart needed"
+
+# Bottom status bar.
+status:
+  connecting: "connecting…"
+  running: "running"
+  reconnecting: "reconnecting…"
+  pending_restart: "saved config not yet live — restart to apply"
+  shown: "%{count} shown"
+  shown_of: "%{shown} of %{total} shown"
+  active_line: "%{active} active · %{shown}%{paused}"
+  paused_suffix: " · paused"
+  killswitch_degraded: "⚠ kill-switch degraded — direct traffic blocked"
+  restart_needed: "⚠ restart needed"
+  driver_version: "driver v%{major}.%{minor}"
+  engine: "engine: %{state}"
+  live: "live · %{count} connection(s)"
+
+# Event-log line fragments.
+log:
+  opened_via: "opened via %{target}"
+  opened_direct: "opened (direct)"
+  failed: "FAILED%{detail}"
+  closed: "closed  %{sent} sent / %{recv} recv"
+  blocked: "BLOCKED"
+  cancelled: "cancelled"
+  exported: "exported log to %{path}"
+  export_failed: "log export failed: %{error}"
+
+# Save error/warning panel headings.
+panel:
+  problems_heading: "problem(s) to fix before saving:"
+  warnings_heading: "advisory warning(s):"
+
+# Inline state badges.
+badge:
+  on: "on"
+  off: "off"
+  enabled: "enabled"
+  disabled: "disabled"
+  json_only: "JSON-only"
+
+# Rule card + form (dynamic bits).
+rule:
+  group: "group %{n}"
+  count: "%{count} rule(s)"
+  match_summary: "match: %{summary}"
+  add_target: "+ Add %{what}"
+  no_target: "no %{what} defined yet"
+
+# Profile summary field labels.
+profile:
+  title: "Profile: %{name}"
+  redirect_mode: "Redirect mode"
+  dns: "DNS"
+  ipv6: "IPv6"
+  bypass: "Bypass"
+  # Config-header running/editing/saved profile line.
+  running: "Running profile"
+  editing: "Editing profile"
+  saved: "Saved profile"
+  note_pending: " — not yet live (restart to apply)"
+  note_config_default: " (config default: %{name})"
+  drift_warning: "⚠ The engine's running profile changed to '%{running}' while this editor is open — your edits target '%{frozen}' and apply to it on save."
+
+# Input placeholders.
+input:
+  filter: "Filter by process or destination…"
+  log_search: "Search log…"
+
+# Background-worker status lines (shown in the status bar when the engine is unreachable).
+worker:
+  runtime_error: "tokio runtime error: %{error}"
+  unexpected_reply: "unexpected reply: %{reply}"
+  engine_up_no_list: "engine up; connection list unavailable (%{error})"
+  engine_unreachable: "engine not reachable (%{error}) — is it running, and are you elevated?"

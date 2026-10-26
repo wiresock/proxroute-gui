@@ -1,0 +1,3 @@
+# Build output only; the GUI lockfile remains part of the source package.
+**/target/
+**/target-*/

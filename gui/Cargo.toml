@@ -1,0 +1,42 @@
+[package]
+name = "proxroute-gui"
+version = "0.1.0"
+edition = "2021"
+publish = false
+license = "GPL-3.0-or-later"  # see LICENSE and COPYING in this directory
+
+# Standalone workspace on purpose: GPUI pulls a large dependency tree (the Zed repo as
+# a git dependency), which we keep OUT of the engine workspace so its build/test/clippy
+# stay fast. This GUI is a separate deliverable that talks to the engine over the
+# management named pipe (proxroute-ipc).
+[workspace]
+
+[dependencies]
+# All three git pins are EXACT revs (never a branch) so a routine `cargo update` can't pull
+# unreviewed upstream into the build, and so the build is byte-reproducible with --locked.
+# gpui + gpui_platform are the exact Zed commit gpui-component builds against, so all three
+# resolve to ONE `gpui`. Bump all three together; re-pin to the revs `gui/Cargo.lock` resolves.
+gpui = { git = "https://github.com/zed-industries/zed", rev = "1d217ee39d381ac101b7cf49d3d22451ac1093fe" }
+gpui_platform = { git = "https://github.com/zed-industries/zed", rev = "1d217ee39d381ac101b7cf49d3d22451ac1093fe", features = ["font-kit"] }
+gpui-component = { git = "https://github.com/longbridge/gpui-component", rev = "7b3b5321f8d25d370f7f23e15c104c4a08431f16" }
+
+# Engine management-API client (the named-pipe protocol + `request`). Path dep into the
+# engine workspace; its workspace-inherited deps resolve against that workspace.
+proxroute-ipc = { path = "../crates/proxroute-ipc" }
+# The config model — the GUI parses the JSON returned by GetConfig into typed structs to
+# render (and later edit) the rules. serde_json parses the GetConfig payload.
+proxroute-config = { path = "../crates/proxroute-config" }
+serde_json = "1"
+# Local timestamps for the event-log panel.
+chrono = "0.4"
+# Internationalization: compile-time-embedded YAML locale catalogs (gui/locales/) via the `t!`
+# macro + runtime `set_locale`. User-facing text is being migrated to resolve through it (staged),
+# so a language becomes a drop-in file; English (`locales/en.yml`) is the source of truth and the
+# fallback. Pinned to "4"
+# to match the version gpui-component already resolves — one rust-i18n in the tree, and one
+# `set_locale` drives both our catalog and gpui-component's built-in strings.
+rust-i18n = "4"
+# A tokio runtime on a background thread drives the named-pipe client (kept off GPUI's
+# executor); `futures` bridges results back to the UI over an unbounded channel.
+tokio = { version = "1", features = ["full"] }
+futures = "0.3"
